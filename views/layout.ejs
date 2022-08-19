@@ -1,0 +1,22 @@
+<!--Layouts acts as a wrapper for the page-->
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <!-- this will add all the link tag present in body part under here -->
+        <%- style %>
+    </head>
+    <body>
+        
+        <%- include('_header.ejs'); %>
+
+        <!--it will include the body part from the relevant ejs files-->
+        <%- body %>
+        
+        <%- include('_footer.ejs'); %>
+        <!-- this will add all the script tag present in the body part under here -->
+        <%- script %>
+    </body>
+</html>
