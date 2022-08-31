@@ -1,0 +1,26 @@
+footer {
+  height: 12%;
+  background-color: grey;
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+}
+
+footer h3 {
+  margin-left: 10px;
+}
+
+footer i {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+footer ul {
+  font-size: 1.3rem;
+  list-style-type: none;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+}

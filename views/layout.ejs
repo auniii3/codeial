@@ -5,6 +5,8 @@
             <%= title %>
         </title>
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
         <!-- this will add all the link tag present in body part under here -->
         <%- style %>
     </head>
@@ -12,8 +14,11 @@
         
         <%- include('_header.ejs'); %>
 
-        <!--it will include the body part from the relevant ejs files-->
-        <%- body %>
+        <main id="layout-main">
+            <!--it will include the body part from the relevant ejs files-->
+            <%- body %>
+        </main>
+        
         
         <%- include('_footer.ejs'); %>
         <!-- this will add all the script tag present in the body part under here -->

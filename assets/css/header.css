@@ -1,0 +1,31 @@
+header {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: blue;
+  height: 5%;
+}
+
+header h2 {
+  color: white;
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 5px;
+  font-size: 1.7rem;
+  width: 85%;
+}
+
+header ul {
+  margin: 0px;
+  margin-top: 10px;
+}
+
+header ul li {
+  display: inline;
+  font-size: 1.2rem;
+}
+
+header ul li a {
+  color: white;
+  text-decoration: none;
+  margin-right: 7px;
+}

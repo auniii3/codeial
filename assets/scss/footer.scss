@@ -1,0 +1,27 @@
+footer{
+    height: 12%;
+    background-color: grey;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+
+    h3{
+        margin-left: 10px;
+    }
+    i{
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    ul{
+        font-size: 1.3rem;
+        list-style-type: none;
+        li{
+            a{
+
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+}
