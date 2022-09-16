@@ -1,9 +1,14 @@
 footer {
-  height: 12%;
+  height: 10%;
   background-color: grey;
-  display: flex;
+  position: fixed;
   flex-wrap: wrap;
   color: white;
+  width: 100%;
+}
+
+footer div {
+  display: flex;
 }
 
 footer h3 {

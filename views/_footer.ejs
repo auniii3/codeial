@@ -1,15 +1,21 @@
 <script src="https://kit.fontawesome.com/164ab0d69f.js" crossorigin="anonymous"></script>
 <footer>
-    <i class="fas fa-copyright"></i>
-    <h3>Coding Ninjas. All Rights Reserved</h3>
-    <ul>
-        <li>
-            <a href="/">Home</a>
-        </li>
-        <li>
-            <a href="/users/profile">
-                Profile
-            </a>
-        </li>
-    </ul>
+    <div>
+        <i class="fas fa-copyright"></i>
+        <h3>Coding Ninjas. All Rights Reserved</h3>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <% if(locals.localuser) {%> 
+                    <a href="/users/profile/<%= locals.localuser.id %>">
+                        Profile
+                    </a>
+                <%}%>
+               
+            </li>
+        </ul>
+    </div>
+ 
 </footer>

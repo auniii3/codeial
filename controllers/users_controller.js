@@ -21,9 +21,28 @@ const Users = require('../models/user');
 // };
 
 module.exports.profile = function(req,res){
-    return res.render('user',{
-        title:"User Profile"
+    let userId = req.params.id;
+    Users.findById(userId,function(err,user){
+        return res.render('user',{
+            title:"User Profile",
+            profile_user: user
+        })
     })
+   
+}
+
+module.exports.updateUser = function(req,res){
+    if(req.params.id == req.user.id){
+        Users.findByIdAndUpdate(req.params.id,
+           req.body,
+            function(err,user){
+                return res.redirect('/');
+        })
+    }
+    else{
+        return res.status(401).send('Unauthorized');
+    }
+    
 }
 
 //render the sign up page
@@ -101,6 +120,7 @@ module.exports.create = function(req,res){
 // }
 
 module.exports.createSession = function(req,res){
+    req.flash('success','Logged in Successfully');
     return res.redirect('/')
 }
 
@@ -112,7 +132,8 @@ module.exports.destroySession = function(req,res){
         {   
             return res.redirect('/users/sign-in');
         }
-        return res.redirect('/');
     });
+    req.flash('success','Logged out Successfully');
+    return res.redirect('/');
     
 }
