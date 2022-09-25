@@ -1,20 +1,24 @@
 <link rel="stylesheet" href="/css/user_profile.css">
-    <h1>
-        Codeial / Profile Page
-    </h1>
+
+    <div style="margin: 20px;">
+        <img src="<%= localuser.avatar %>" alt="<%= localuser.name %>" width="100">
+    </div>
     
 
-    <% if(localuser.id == profile_user.id) {%>
-        <!--if user matches with signed in user then show the form-->
-            <form action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
-                <input type="text" name="name" value="<%= profile_user.name %>" required>
-                <input type="email" name="email" value="<%= profile_user.email %>" required>
-                <input type="file" name="avatar" placeholder="Profile Picture">
-                <input type="submit" value="Update Details">
-            </form>
-    <%}else{%>
-        <div>
-            <p><%= profile_user.name %></p>
-            <p><%= profile_user.email %></p>
-         </div>
-    <%}%>
+    <div style="margin: 20px;">
+        <% if(localuser.id == profile_user.id) {%>
+            <!--if user matches with signed in user then show the form-->
+                <form action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
+                    <input type="text" name="name" value="<%= profile_user.name %>" required>
+                    <input type="email" name="email" value="<%= profile_user.email %>" required>
+                    <input type="file" name="avatar" placeholder="Profile Picture">
+                    <input type="submit" value="Update Details">
+                </form>
+        <%}else{%>
+            <div>
+                <p><%= profile_user.name %></p>
+                <p><%= profile_user.email %></p>
+             </div>
+        <%}%>
+    </div>
+    

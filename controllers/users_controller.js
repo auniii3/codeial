@@ -1,4 +1,8 @@
+const User = require('../models/user');
 const Users = require('../models/user');
+const path = require('path');
+const fs = require('fs');
+
 
 // module.exports.profile = function(req,res){
 //     let id = req.cookies.user_id;
@@ -31,16 +35,41 @@ module.exports.profile = function(req,res){
    
 }
 
-module.exports.updateUser = function(req,res){
+module.exports.updateUser = async function(req,res){
+    // if(req.params.id == req.user.id){
+    //     Users.findByIdAndUpdate(req.params.id,
+    //        req.body,
+    //         function(err,user){
+    //             return res.redirect('/');
+    //     })
+    // }
+    // else{
+    //     return res.status(401).send('Unauthorized');
+    // }
     if(req.params.id == req.user.id){
-        Users.findByIdAndUpdate(req.params.id,
-           req.body,
-            function(err,user){
-                return res.redirect('/');
-        })
-    }
-    else{
-        return res.status(401).send('Unauthorized');
+        try{
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log("******Multer Error******");
+                }
+                //we are taking this content from multer request as bodyparser can not parse multipart data
+                user.name = req.body.name;
+                user.email = req.body.email;
+                if(req.file){
+                    if(user.avatar && fs.existsSync(path.join(__dirname,'..',user.avatar))){
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    }
+                    user.avatar= path.join(User.avatarPath,req.file.filename);
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        }
+        catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+        }
     }
     
 }
@@ -126,7 +155,9 @@ module.exports.createSession = function(req,res){
 
 //sign out for the user
 module.exports.destroySession = function(req,res){
-    //logout function is provided by passport js
+    /*Passport JS also conveniently provides us with a “req.logOut()” 
+    function, which when called clears the “req.session.passport” 
+    object and removes any attached params.*/
     req.logout(function(err){
         if(err)
         {   
